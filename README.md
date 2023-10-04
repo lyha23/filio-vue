@@ -31,7 +31,7 @@ npm install
 yarn
 ```
 Second, run the development server: 
->其次安装该安装的package
+>第二步, 运行
 
 ```bash
 npm run dev
