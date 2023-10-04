@@ -1,4 +1,4 @@
-import { langType } from './lang-base';
+import { type langType } from './lang-base';
 
 export const lang: langType = {
   title: 'VUE H5 development template',

@@ -1,0 +1,49 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes translate {
+
+  0%,
+  to {
+    transform: translateX(0)
+  }
+
+  50% {
+    transform: translateX(24px)
+  }
+}
+
+@keyframes translate2 {
+
+  0%,
+  to {
+    transform: translateX(0)
+  }
+
+  50% {
+    transform: translateX(-24px)
+  }
+}
+
+@media(prefers-reduced-motion: no-preference) {
+  .cog {
+    animation: spin 20000ms linear 0s infinite;
+    transform-origin: 53.8% 85.69%;
+  }
+
+  .switchToggle1 {
+    animation: translate 3000ms ease-in .5s infinite;
+  }
+
+  .switchToggle2 {
+    animation: translate2 3000ms ease-in 0s infinite;
+  }
+
+}

@@ -1,5 +1,8 @@
 {
-  "i18n-ally.localesPaths": ["src/i18n", "src/i18n/lang"],
+  "i18n-ally.localesPaths": [
+    "src/i18n",
+    "src/i18n/lang"
+  ],
   "cSpell.words": [
     "browserslist",
     "consola",
@@ -14,5 +17,8 @@
     "vite",
     "vitejs",
     "vueuse"
-  ]
+  ],
+  "liveServer.settings.port": 5501,
+  "eslint.debug": true,
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
 }

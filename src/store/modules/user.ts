@@ -1,4 +1,4 @@
-import { loginPassword } from '/@/api';
+import useAxiosApi from '/@/utils/useAxiosApi';
 import { useCookies } from '@vueuse/integrations/useCookies';
 import { defineStore } from 'pinia';
 
@@ -6,65 +6,46 @@ const { VITE_TOKEN_KEY } = import.meta.env;
 const token = useCookies().get(VITE_TOKEN_KEY as string);
 
 interface StoreUser {
-  token: string;
+  access_token: string;
   info: Record<any, any>;
 }
 
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): StoreUser => ({
-    token: token,
+    access_token: token,
     info: {},
   }),
   getters: {
     getUserInfo(): any {
       return this.info || {};
     },
+    isLogin(): Boolean {
+      return this.access_token !== '';
+    },
   },
   actions: {
     setInfo(info: any) {
       this.info = info ? info : '';
     },
-    login() {
-      return new Promise((resolve) => {
-        const { execute } = loginPassword();
-        execute().then((res) => {
-          this.setInfo(res);
-          resolve(res);
-        });
+    setToken(token: string) {
+      this.access_token = token ? token : '';
+    },
+    async refreshMyInfo() {
+      const resp = await this.getMyinfo();
+      this.setInfo(resp.data.result);
+    },
+    getMyinfo(): any {
+      return useAxiosApi(`/user/info`, {
+        method: 'GET',
+        data: {},
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       });
     },
   },
   persist: {
-    key: 'token',
+    key: 'user-content',
     storage: localStorage,
-    paths: ['token'],
+    paths: ['access_token', 'info'],
   },
 });
-// export const useUserStore = defineStore('app-user', () => {
-//   const Token = ref(token);
-//   const info = ref<Record<any, any>>({});
-//   const setInfo = (info: any) => {
-//     info.value = info ? info : '';
-//   };
-//   const getUserInfo = () => {
-//     return info || {};
-//   };
-//   const login = () => {
-//     return new Promise((resolve) => {
-//       const { data } = loginPassword();
-//       watch(data, () => {
-//         setInfo(data.value);
-//         // useCookies().set(VITE_TOKEN_KEY as string, data.value.token);
-//         resolve(data.value);
-//       });
-//     });
-//   };
-//   return {
-//     Token,
-//     info,
-//     setInfo,
-//     login,
-//     getUserInfo,
-//   };
-// });

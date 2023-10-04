@@ -1,10 +1,10 @@
 export const routes = [
   {
     path: '/',
-    redirect: '/home',
-    component: () => import('/@/layout/basic/index.vue'),
+    redirect: '/notfound',
     children: [
       {
+        name: 'home',
         path: 'home',
         component: () => import('/@/views/home/index.vue'),
         meta: {
@@ -13,49 +13,101 @@ export const routes = [
         },
       },
       {
-        path: 'list',
-        component: () => import('/@/views/list/index.vue'),
+        name: 'about',
+        path: 'about',
+        component: () => import('/@/views/about/index.vue'),
         meta: {
-          title: 'tabbar.list',
+          title: 'tabbar.about',
           keepAlive: true,
         },
       },
       {
-        path: 'member',
-        component: () => import('/@/views/member/index.vue'),
+        name: 'administrator',
+        path: 'administrator',
+        component: () => import('/@/views/administrator/index.vue'),
         meta: {
-          title: 'tabbar.member',
+          title: 'tabbar.administrator',
           keepAlive: true,
         },
       },
       {
-        path: 'demo',
-        component: () => import('/@/views/demo/index.vue'),
+        name: 'onlinePrint',
+        path: 'onlinePrint',
+        component: () => import('/@/views/onlinePrint/index.vue'),
         meta: {
-          title: 'tabbar.demo',
+          title: 'tabbar.onlinePrint',
           keepAlive: true,
         },
       },
       {
-        name: 'listDetails',
-        path: '/details',
-        component: () => import('/@/views/list/details/index.vue'),
+        name: 'userHistoryShow',
+        path: 'userHistoryShow',
+        component: () => import('/@/views/userHistoryShow/index.vue'),
         meta: {
-          title: 'list.details',
-          border: false,
+          title: 'tabbar.userHistoryShow',
+          keepAlive: true,
+        },
+      },
+      {
+        name: 'userMsg',
+        path: 'userMsg',
+        component: () => import('/@/views/userMsg/index.vue'),
+        meta: {
+          title: 'tabbar.userHistoryShow',
+          keepAlive: true,
+        },
+      },
+      {
+        name: 'login',
+        path: 'login',
+        component: () => import('/@/views/login/index.vue'),
+        meta: {
+          title: '',
+          keepAlive: true,
+        },
+      },
+      {
+        name: 'resign',
+        path: 'resign',
+        component: () => import('/@/views/resign/index.vue'),
+        meta: {
+          title: '',
+          keepAlive: true,
         },
       },
     ],
   },
   {
-    name: 'login',
-    path: '/login',
-    component: () => import('/@/views/login/index.vue'),
+    path: '/user',
+    redirect: '/user/[:id]',
+    children: [
+      {
+        path: '/[:id]',
+        meta: {
+          keepAlive: true,
+        },
+      },
+      {
+        name: 'userCenter',
+        path: 'center',
+        component: () => import('/@/views/user/center/index.vue'),
+        meta: {
+          title: '个人中心',
+          keepAlive: true,
+        },
+      },
+    ],
+  },
+  {
+    name: 'notfound',
+    path: '/notfound',
+    component: () => import('/@/views/404/index.vue'),
     meta: {
       title: '',
       keepAlive: true,
     },
   },
+
   // 匹配不到重定向会主页
   {
     // 找不到路由重定向到404页面

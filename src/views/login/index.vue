@@ -1,59 +1,42 @@
+<script lang="ts" setup name="LoginPage">
+import router from '/@/router';
+import { reactive, ref } from 'vue';
+import { useUserStore } from '/@/store/modules/user';
+import useAxiosApi from '/@/utils/useAxiosApi';
+
+const userStore = useUserStore();
+const formData = reactive({
+  name: 'sdasd',
+  pwd: 'asdasd',
+});
+const ruleForm = ref<any>(null);
+async function submit() {
+  const userInfo = await useAxiosApi(`/user/login`, {
+    method: 'POST',
+    data: { username: formData.name, password: formData.pwd },
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  });
+  if (userInfo?.data.code === 200) {
+    userStore.setToken(`bearer ${userInfo.data.access_token}`);
+    userStore.refreshMyInfo();
+    router.push({ path: '/home' });
+  }
+}
+</script>
+
 <template>
-  <div class="login">
-    <h2>登录</h2>
-    <nut-form ref="ruleForm" :model-value="formData">
-      <nut-form-item required prop="name" :rules="[{ required: true, message: '请输入用户名' }]">
-        <input v-model="formData.name" class="nut-input-text" placeholder="请输入用户名" type="text" />
-      </nut-form-item>
-      <nut-form-item required prop="pwd" :rules="[{ required: true, message: '请填写联系电话' }]">
-        <input v-model="formData.pwd" class="nut-input-text" placeholder="请输入密码" type="password" />
-      </nut-form-item>
-      <nut-button block type="info" @click="submit"> 登录 </nut-button>
-    </nut-form>
+  <div class="h-full flex items-center justify-between">
+    <img class="w-1/2" src="src/assets/images/zhonglou.jpg" alt="" />
+    <div class="m-0 w-1/2">
+      <h1 class="text-xl">登录</h1>
+      <form ref="ruleForm" class="flex flex-col" autocomplete="on">
+        <input v-model="formData.name" placeholder="请输入用户名" type="text" />
+        <input v-model="formData.pwd" placeholder="请输入密码" type="password" />
+        <input type="button" value="登录" @click="submit" />
+        <router-link to="/resign">注册</router-link>
+      </form>
+    </div>
   </div>
 </template>
 
-<script lang="ts" setup name="LoginPage">
-  import router from '/@/router';
-  import { reactive, ref } from 'vue';
-  import { useUserStore } from '/@/store/modules/user';
-
-  const userStore = useUserStore();
-  const formData = reactive({
-    name: '',
-    pwd: '',
-  });
-  const ruleForm = ref<any>(null);
-  const submit = () => {
-    ruleForm.value.validate().then(async ({ valid, errors }: any) => {
-      if (valid) {
-        const userInfo = await userStore.login();
-        if (userInfo) {
-          router.push({ path: '/home' });
-        }
-      } else {
-        console.log('error submit!!', errors);
-      }
-    });
-  };
-</script>
-
-<style scoped lang="scss">
-  .login {
-    padding: 20px;
-    h2 {
-      text-align: center;
-      letter-spacing: 10px;
-    }
-
-    .nut-form-item {
-      background: #f2f3f5;
-      border-radius: 20px;
-      margin-bottom: 20px;
-
-      input {
-        background: transparent;
-      }
-    }
-  }
-</style>
+<style scoped lang="scss"></style>

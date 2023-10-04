@@ -1,89 +1,74 @@
-<template>
-  <header class="header">
-    <img src="https://cdn.jsdelivr.net/gh/fonghehe/picture/vue-h5-template/logo.png" /><span> {{ $t('title') }}</span>
-  </header>
-  <div class="intro-header">
-    <div>{{ $t('introduction') }}</div>
-    <a href="https://github.com/sunniejs/vue-h5-template.git">
-      <Github />
-    </a>
-  </div>
-  <nut-cell-group :title="$t('home.support')" class="supportList">
-    <nut-cell v-for="(item, index) in cellList" :key="index" :title="item">
-      <template #icon>
-        <Check />
-      </template>
-    </nut-cell>
-  </nut-cell-group>
-  <nut-cell-group :title="$t('home.cssMultiLanguage')" class="supportList">
-    <nut-cell>
-      <div :class="['btn-confirm', locale]"></div>
-    </nut-cell>
-  </nut-cell-group>
-  <div class="btn-wrap">
-    <nut-button shape="square" size="small" type="default" @click="changeLang('zh-cn')">
-      {{ $t('language.zh') }}
-    </nut-button>
-    <nut-button shape="square" size="small" type="default" @click="changeLang('en-us')">
-      {{ $t('language.en') }}
-    </nut-button>
-  </div>
-  {{ getUserInfo }}
-</template>
-
 <script lang="ts" setup name="HomePage">
-  import { computed } from 'vue';
-  import { useUserStore } from '/@/store/modules/user';
-  import { setLang } from '/@/i18n';
-  import { useI18n } from 'vue-i18n';
-  import { Github, Check } from '@nutui/icons-vue';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useUserStore } from '/@/store/modules/user';
+import Cursor from '/@/components/common/cursor.vue';
+import ProgressIndicator from '/@/components/common/progress-indicator.vue';
+import AboutSection from '/@/components/home/about.vue';
+import HeroSection from '/@/components/home/hero.vue';
+import ProjectsSection from '/@/components/home/projects.vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import useState from '/@/utils/useState';
+import TimelineSection from '/@/components/home/timeline.vue';
+import CollaborationSection from '/@/components/home/collaboration.vue';
+import Footer from '@/components/common/footer.vue';
+import Header from '../../components/common/header.vue';
+import SkillsSection from '../../components/home/myskill.vue';
+import QuoteSection from '../../components/home/quote.vue';
+import Layout from '../../components/common/layout.vue';
+export interface IDesktop {
+  isDesktop: boolean;
+}
 
-  const { locale } = useI18n();
+const { locale } = useI18n();
+const userStore = useUserStore();
+const getUserInfo = computed(() => {
+  const { name = '' } = userStore.getUserInfo || {};
+  return name;
+});
 
-  let cellList = ['vue3', 'vite', 'vue-router', 'axios', 'Pinia', 'vue-i18n', 'postcss-px-to-viewport', 'varlet / vant / nutUI', 'eruda'];
-  const userStore = useUserStore();
-  const getUserInfo = computed(() => {
-    const { name = '' } = userStore.getUserInfo || {};
-    return name;
+gsap.registerPlugin(ScrollTrigger);
+gsap.config({ nullTargetWarn: false });
+
+const [isDesktop, setisDesktop] = useState(true);
+let timer: NodeJS.Timeout | null = null;
+const DEBOUNCE_TIME = 100;
+
+const debouncedDimensionCalculator = () => {
+  clearTimeout(timer!);
+  timer = setTimeout(() => {
+    const isDesktopResult =
+      typeof window.matchMedia('(orientation: portrait)').matches === 'undefined' && !navigator.userAgent.includes('IEMobile');
+
+    window.history.scrollRestoration = 'manual';
+    setisDesktop(isDesktopResult);
+  }, DEBOUNCE_TIME);
+};
+
+onMounted(() => {
+  debouncedDimensionCalculator();
+  window.addEventListener('resize', debouncedDimensionCalculator);
+  onUnmounted(() => {
+    window.removeEventListener('resize', debouncedDimensionCalculator);
   });
-
-  const changeLang = (type) => {
-    setLang(type);
-  };
+});
 </script>
-<style lang="scss">
-  .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    font-size: 40px;
-    img {
-      width: 90px;
-      height: 90px;
-    }
-  }
 
-  .intro-header {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-  }
-
-  .supportList {
-    margin: 0 16px;
-
-    .nut-cell-group__title {
-      margin-top: 30px;
-    }
-  }
-
-  .btn-wrap {
-    margin: 20px;
-  }
-  .btn-confirm {
-    @include main-lang-bg(302px, 82px, '/@/assets/button', 'confirm.png');
-  }
-</style>
+<template>
+  <Layout />
+  <Header />
+  <ProgressIndicator />
+  <Cursor :is-desktop="isDesktop" />
+  <main class="flex flex-col">
+    <div class="fixed left-0 top-0 h-full w-full bg-gray-900 -z-1" />
+    <HeroSection />
+    <AboutSection />
+    <ProjectsSection :is-desktop="isDesktop" />
+    <QuoteSection />
+    <SkillsSection />
+    <TimelineSection :is-desktop="isDesktop" />
+    <CollaborationSection />
+    <Footer />
+  </main>
+</template>

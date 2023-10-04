@@ -1,4 +1,4 @@
-import { MockMethod, Recordable } from 'vite-plugin-mock';
+import { type MockMethod, type Recordable } from 'vite-plugin-mock';
 
 interface response {
   body: Recordable;

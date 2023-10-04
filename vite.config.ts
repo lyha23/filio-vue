@@ -2,7 +2,14 @@ import { createVitePlugins } from './build/vite/plugins';
 import { resolve } from 'path';
 import { ConfigEnv, loadEnv, UserConfig } from 'vite';
 import { wrapperEnv } from './build/utils';
+// vite.config.ts
+import UnoCSS from 'unocss/vite'
+// element按需引入
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+const inject = require('@rollup/plugin-inject')
 const pathResolve = (dir: string) => {
   return resolve(process.cwd(), '.', dir);
 };
@@ -27,6 +34,10 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
           find: /\/@\//,
           replacement: pathResolve('src') + '/',
         },
+        {
+          find: /@\//,
+          replacement: pathResolve('src') + '/',
+        },
         // /#/xxxx => types/xxxx
         {
           find: /\/#\//,
@@ -36,9 +47,18 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
     },
     server: {
       host: true,
-      hmr: true,
+      hmr: true
     },
-    plugins: createVitePlugins(viteEnv, isProduction),
+    plugins: [...createVitePlugins(viteEnv, isProduction), AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }), Components({
+      resolvers: [ElementPlusResolver()],
+    }), inject({
+      '$': 'jquery',
+    }), UnoCSS({
+      configFile: 'uno.config.ts',
+    }),
+    ],
     build: {
       minify: 'terser',
       terserOptions: {
@@ -53,7 +73,7 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
       preprocessorOptions: {
         scss: {
           // 配置 nutui 全局 scss 变量
-          additionalData: `@import "@nutui/nutui/dist/styles/variables.scss";@import '/@/styles/mixin.scss'; @import '/@/styles/vant.scss';`,
+          additionalData: ``,
         },
       },
     },

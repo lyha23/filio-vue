@@ -1,12 +1,16 @@
-import { langType } from './lang-base';
+import { type langType } from './lang-base';
 
 export const lang: langType = {
   title: 'VUE H5开发模板',
+  brand: '百变星',
   tabbar: {
     home: '首页',
     list: '列表',
     member: '我的',
     demo: '示例',
+    about: '关于',
+    administrator: '管理员',
+    onlinePrint: '在线打印',
   },
   language: {
     en: '英文',

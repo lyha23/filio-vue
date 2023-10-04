@@ -1,4 +1,9 @@
-import type { ComponentRenderProxy, VNode, VNodeChild, PropType as VuePropType } from 'vue';
+import {
+  type ComponentRenderProxy,
+  type VNode,
+  type VNodeChild,
+  type PropType as VuePropType,
+} from "vue";
 
 declare global {
   const __APP_INFO__: {

@@ -1,51 +1,23 @@
 {
-  "id": "3210904",
-  "name": "fast-vue3",
+  "id": "4137688",
+  "name": "3dprint",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "517495",
-      "name": "ok",
-      "font_class": "custom-ok",
-      "unicode": "e631",
-      "unicode_decimal": 58929
-    },
-    {
-      "icon_id": "4937000",
-      "name": "github-fill",
-      "font_class": "github-fill",
-      "unicode": "e885",
-      "unicode_decimal": 59525
-    },
-    {
-      "icon_id": "12932129",
-      "name": "l-search",
-      "font_class": "l-search",
-      "unicode": "e79e",
-      "unicode_decimal": 59294
-    },
-    {
-      "icon_id": "109751",
-      "name": "home",
-      "font_class": "home",
+      "icon_id": "4880413",
+      "name": "删除",
+      "font_class": "shanchu",
       "unicode": "e603",
       "unicode_decimal": 58883
     },
     {
-      "icon_id": "663138",
-      "name": "member",
-      "font_class": "member",
-      "unicode": "e602",
-      "unicode_decimal": 58882
-    },
-    {
-      "icon_id": "21513638",
-      "name": "list",
-      "font_class": "list",
-      "unicode": "e601",
-      "unicode_decimal": 58881
+      "icon_id": "15838548",
+      "name": "upload",
+      "font_class": "upload",
+      "unicode": "e682",
+      "unicode_decimal": 59010
     }
   ]
 }

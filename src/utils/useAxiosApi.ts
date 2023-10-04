@@ -1,7 +1,7 @@
 import { useAxios } from '@vueuse/integrations/useAxios';
-import axios from 'axios';
-import { showToast } from 'vant';
-import 'vant/es/toast/style';
+import axios, { type AxiosRequestConfig } from 'axios';
+import { useUserStore } from '../store/modules/user';
+import { API_BASE_URL } from './../../build/constant';
 
 // create an axios instance
 const instance = axios.create({
@@ -12,6 +12,7 @@ const instance = axios.create({
 // request interceptor
 instance.interceptors.request.use(
   (config) => {
+    config.baseURL = 'http://localhost:8000';
     // do something before request is sent
     // const token = store.state.user.token;
 
@@ -33,21 +34,11 @@ instance.interceptors.request.use(
 
 // response interceptor
 instance.interceptors.response.use(
-  /**
-   * If you want to get http information such as headers or status
-   * Please return  response => response
-   */
-
-  /**
-   * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
-   */
   (response) => {
     const res = response.data;
     // if the custom code is not 200, it is judged as an error.
     if (res.code !== 200) {
-      showToast(res.msg);
+      console.debug(res.msg);
       // 412: Token expired;
       if (res.code === 412) {
         // store.dispatch('user/userLogout');
@@ -58,8 +49,8 @@ instance.interceptors.response.use(
     }
   },
   (error) => {
-    console.log('err' + error);
-    showToast(error.message);
+    console.log(`err${error}`);
+    console.debug(error.message);
     return Promise.reject(error.message);
   },
 );
@@ -67,7 +58,16 @@ instance.interceptors.response.use(
 /**
  * reactive useFetchApi
  */
-
-export default function useAxiosApi(url: string, config: any) {
-  return useAxios(url, config);
+export default async function useAxiosApi(url: string, config: AxiosRequestConfig) {
+  const userStore = useUserStore();
+  config.baseURL = `${API_BASE_URL}`;
+  if (userStore.isLogin) {
+    config.headers = {
+      ...config.headers,
+      Authorization: `${userStore.access_token}`,
+    };
+  }
+  const resp = (await useAxios(url, config)).response.value;
+  console.log('%c [ resp ]-66', 'font-size:13px; background:pink; color:#bf2c9f;', resp);
+  return resp;
 }

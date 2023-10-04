@@ -1,7 +1,7 @@
 module.exports = {
   printWidth: 140,
   semi: true,
-  vueIndentScriptAndStyle: true,
+  vueIndentScriptAndStyle: false,
   singleQuote: true,
   trailingComma: 'all',
   proseWrap: 'never',

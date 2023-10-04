@@ -5,7 +5,7 @@ export function loadLang() {
   const langs: Record<string, any> = {};
 
   for (const path in modules) {
-    const name = path.replace(/(\.\/lang\/|\.ts)/g, '');
+    const name = path.replaceAll(/(\.\/lang\/|\.ts)/g, '');
     langs[name] = modules[path].lang;
   }
   return langs;
