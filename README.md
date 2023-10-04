@@ -1,36 +1,41 @@
-# vue-h5-template
+# filio-vue
 
-基于 vue3 + vite + （nutui or varlet or vant） + sass + viewport 适配方案 + axios 封装，构建手机端模板脚手架
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-如果你不熟悉 vue3，想继续使用 vue2 开发的，可以[点这里](https://github.com/sunniejs/vue-h5-template/tree/vue2-h5-template)来获取 vue2-h5-template
+[Live Demo](https://ayushsingh.net/)
 
-详细的说明文档请[点击](https://sunniejs.github.io/vue-h5-template/)查看
+The origin program is [here](https://github.com/ayush013/folio.git), which is powered by React. And I have got to praise the project's owner for his great work. What he had done presents a wonderful UI/UX. 
 
-如果对你有帮助送我一颗珍贵的小星星（づ￣ 3 ￣）づ ╭❤ ～
+The simple blog-front project contains slideshow, text gradient, dynamic SVG, timeline, and so on.
 
-# 关于我
+All of there are almost the best practices.
+>初始的项目在这里, 是用React驱动的. 不得不说, 这个印度🇮🇳老哥真🐂🍺, 视觉效果简直惊为天人. 这个前端项目包含幻灯片播放, 文字渐变, 动态SVG, 时间轴. 并且基本上都是最佳实践.
 
-扫描添加下方的微信并备注加交流群(已超过 200 人，只能邀请)，交流学习，及时获取代码最新动态。
+So I recode this program by Vue.js in order to use it in my other's program in the future.
+> 所以, 我用Vue.js重写了它, 以便于在更多的项目中使用它的轮子.
 
- <p>
-  <img src="https://cdn.jsdelivr.net/gh/fonghehe/picture/personal/account.jpg" width="256">
-</p>
+This one is based on vue3 + vite + unocss + sass + viewport adapt + axios
 
-如果你觉得该项目有给你带来帮助，方便了你的日常开发，可以请作者喝一杯 ☕ 支持持续的迭代
+> 基于 vue3 + vite + unocss + sass + viewport 适配方案 + axios 封装.
 
- <table >
-  <tr align="center">
-  <td>WechatPay</td>
-  <td>AliPay</td>
-  </tr>
-  <tr style="text-align:center">
-    <td> <img src="https://cdn.jsdelivr.net/gh/fonghehe/picture/contribute/wechatPay.jpeg" width="256" /></td>
-    <td>
-      <img src="https://cdn.jsdelivr.net/gh/fonghehe/picture/contribute/aliPay.jpeg" width="256" />
-    </td>
-  </tr>
-</table>
+if it helps you, you can star me.
+> 如果对你有帮助送我一颗珍贵的小星星（づ￣ 3 ￣）づ ╭❤ 
 
-# Star History
+## How to run on local?  如何运行?
 
-[![Star History Chart](https://api.star-history.com/svg?repos=sunniejs/vue-h5-template&type=Timeline)](https://star-history.com/#tobe-fe-dalao/fast-vue3&Timeline)
+First, run the development server: 
+>首先安装该安装的package
+```bash
+npm install
+# or
+yarn
+```
+Second, run the development server: 
+>其次安装该安装的package
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+

@@ -1,7 +1,4 @@
 <script lang="ts" setup name="HomePage">
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useUserStore } from '/@/store/modules/user';
 import Cursor from '/@/components/common/cursor.vue';
 import ProgressIndicator from '/@/components/common/progress-indicator.vue';
 import AboutSection from '/@/components/home/about.vue';
@@ -20,13 +17,6 @@ import Layout from '../../components/common/layout.vue';
 export interface IDesktop {
   isDesktop: boolean;
 }
-
-const { locale } = useI18n();
-const userStore = useUserStore();
-const getUserInfo = computed(() => {
-  const { name = '' } = userStore.getUserInfo || {};
-  return name;
-});
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({ nullTargetWarn: false });

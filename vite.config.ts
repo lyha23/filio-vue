@@ -1,15 +1,15 @@
-import { createVitePlugins } from './build/vite/plugins';
-import { resolve } from 'path';
-import { ConfigEnv, loadEnv, UserConfig } from 'vite';
-import { wrapperEnv } from './build/utils';
+import { resolve } from 'node:path';
+import { type ConfigEnv, type UserConfig, loadEnv } from 'vite';
 // vite.config.ts
-import UnoCSS from 'unocss/vite'
+import UnoCSS from 'unocss/vite';
 // element按需引入
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { wrapperEnv } from './build/utils';
+import { createVitePlugins } from './build/vite/plugins';
 
-const inject = require('@rollup/plugin-inject')
+const inject = require('@rollup/plugin-inject');
 const pathResolve = (dir: string) => {
   return resolve(process.cwd(), '.', dir);
 };
@@ -32,32 +32,37 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
         // /@/xxxx => src/xxxx
         {
           find: /\/@\//,
-          replacement: pathResolve('src') + '/',
+          replacement: `${pathResolve('src')}/`,
         },
         {
           find: /@\//,
-          replacement: pathResolve('src') + '/',
+          replacement: `${pathResolve('src')}/`,
         },
         // /#/xxxx => types/xxxx
         {
           find: /\/#\//,
-          replacement: pathResolve('types') + '/',
+          replacement: `${pathResolve('types')}/`,
         },
       ],
     },
     server: {
       host: true,
-      hmr: true
+      hmr: true,
     },
-    plugins: [...createVitePlugins(viteEnv, isProduction), AutoImport({
-      resolvers: [ElementPlusResolver()],
-    }), Components({
-      resolvers: [ElementPlusResolver()],
-    }), inject({
-      '$': 'jquery',
-    }), UnoCSS({
-      configFile: 'uno.config.ts',
-    }),
+    plugins: [
+      ...createVitePlugins(viteEnv, isProduction),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
+      inject({
+        $: 'jquery',
+      }),
+      UnoCSS({
+        configFile: 'uno.config.ts',
+      }),
     ],
     build: {
       minify: 'terser',
