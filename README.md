@@ -39,3 +39,11 @@ npm run dev
 yarn dev
 ```
 
+## How to reconstruct?  如何重构?
+|React | Vue|
+|:-:|-|
+|useRef | ref|
+|useEffect | onMounted/onUnmounted|
+| {} | v-bind|
+| jsx parameter| defineProps |
+|MutableRefObject|Ref<HeepElement>|
