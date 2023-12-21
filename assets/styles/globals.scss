@@ -1,4 +1,4 @@
-@import './tailwind_base';
+@import './tailwind_base.scss';
 
 @font-face {
 	font-style: normal;
@@ -25,7 +25,8 @@
 }
 
 body {
-	@apply dark:bg-gray-900 bg-white text-black overflow-x-hidden;
+	@apply dark:bg-gray-900 bg-white text-light overflow-x-hidden;
+  cursor: none;
 }
 
 html {

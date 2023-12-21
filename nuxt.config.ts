@@ -6,4 +6,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   devtools: { enabled: true },
+  vue: {
+    compilerOptions: {
+      isCustomElement: tag => ['clip-path'].includes(tag),
+    },
+  },
 })

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Linear, gsap } from 'gsap'
-import styles from './Cursor.module.scss'
+import styles from './common/Cursor.module.scss'
 import { type IDesktop, isSmallScreen } from '~/store/constants'
 
 const props = defineProps<IDesktop>()

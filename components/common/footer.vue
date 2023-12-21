@@ -12,7 +12,7 @@ const otherProp = reactive({
 
 <template>
   <footer :id="footerRef" class="relative w-full flex flex-col select-none items-stretch bg-cover">
-    <img src="/footer-curve.svg" alt="Footer" class="w-full" height="{290}" role="presentation" width="{1440}">
+    <img src="/footer-curve.svg" alt="Footer" class="w-full" height="290" role="presentation" width="1440">
     <div class="h-full w-full">
       <div class="section-container z-10 h-full flex flex-col items-center justify-end py-12">
         <h1 class="text-center text-3xl font-medium md:text-4xl">

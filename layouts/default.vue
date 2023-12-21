@@ -7,7 +7,7 @@ import 'virtual:uno.css'
 </template>
 
 <style lang="scss">
-@import '/styles/globals.scss';
+@import '~/assets/styles/globals.scss';
 @import '/font/iconfont.css';
 #__nuxt {
   width: 100%;

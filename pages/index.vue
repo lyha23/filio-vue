@@ -1,12 +1,9 @@
 <script lang="ts" setup name="HomePage">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import Header from '../components/common/header.vue'
-import QuoteSection from '../components/home/quote.vue'
+
+import QuoteSection from '~/components/home/quote.vue'
 import SkillsSection from '~/components/home/myskill.vue'
-import Layout from '~/components/common/layout.vue'
-import Cursor from '~/components/common/cursor.vue'
-import ProgressIndicator from '~/components/common/progress-indicator.vue'
 import AboutSection from '~/components/home/about.vue'
 import HeroSection from '~/components/home/hero.vue'
 import ProjectsSection from '~/components/home/projects.vue'

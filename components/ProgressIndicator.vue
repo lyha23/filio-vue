@@ -13,7 +13,6 @@ function calculateProgress() {
 onMounted(() => {
   const { matches } = window.matchMedia(NO_MOTION_PREFERENCE_QUERY)
   matches && window.addEventListener('scroll', calculateProgress)
-  // return window.removeEventListener("scroll", calculateProgress)
 })
 
 onUnmounted(() => {
