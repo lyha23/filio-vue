@@ -1,38 +1,38 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import VanillaTilt from 'vanilla-tilt';
+import { onMounted } from 'vue'
+import VanillaTilt from 'vanilla-tilt'
 
 onMounted(() => {
-  VanillaTilt.init(document.querySelector('.box-item'), {
+  VanillaTilt.init(document.querySelector('.box-item') as HTMLElement, {
     max: 50,
     speed: 400,
-  });
+  })
 
-  //It also supports NodeList
-  VanillaTilt.init(document.querySelectorAll('.box-item'));
-});
+  // It also supports NodeList
+  VanillaTilt.init(document.querySelectorAll('.box-item') as unknown as HTMLElement[])
+})
 </script>
 
 <template>
   <div>
     <div class="box">
       <div class="box-item">
-        <img src="/public/logo.svg" />
+        <img src="/public/logo.svg">
         <h4>测试</h4>
         <p>111</p>
       </div>
       <div class="box-item">
-        <img src="/public/logo.svg" />
+        <img src="/public/logo.svg">
         <h4>测试</h4>
         <p>111</p>
       </div>
       <div class="box-item">
-        <img src="/public/logo.svg" />
+        <img src="/public/logo.svg">
         <h4>测试</h4>
         <p>111</p>
       </div>
       <div class="box-item">
-        <img src="/public/logo.svg" />
+        <img src="/public/logo.svg">
         <h4>测试</h4>
         <p>111</p>
       </div>

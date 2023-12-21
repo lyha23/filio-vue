@@ -1,11 +1,11 @@
 <script setup name="LandingHero" lang="ts">
 import { Linear, gsap } from 'gsap'
 import Typed from 'typed.js'
-import { useEffect } from 'vue-hooks-api'
 import Button, { ButtonTypes } from '../common/button.vue'
 import HeroImage from './hero-image'
 import { MENULINKS, SOCIAL_LINKS, TYPED_STRINGS } from '~/store/constants'
 
+let typed: Typed
 const HERO_STYLES = {
   SECTION: 'w-full flex md:items-center py-8 section-container min-h-screen relative mb-24',
   CONTENT: 'font-medium flex flex-col pt-32 md:pt-0 select-none',
@@ -35,11 +35,12 @@ function initRevealAnimation(targetSection: Ref<HTMLElement | undefined>): GSAPT
   return revealTl
 }
 onMounted(() => {
-  useEffect(() => {
-    const typed = initTypeAnimation(typedSpanElement)
-    initRevealAnimation(targetSection)
-    return typed.destroy
-  }, [typedSpanElement, targetSection])
+  typed = initTypeAnimation(typedSpanElement)
+  initRevealAnimation(targetSection)
+})
+
+onUnmounted(() => {
+  typed.destroy()
 })
 
 const { ref: heroSectionRef } = MENULINKS[0]

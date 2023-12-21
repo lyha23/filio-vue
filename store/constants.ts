@@ -5,19 +5,19 @@
 // License text available at https://opensource.org/licenses/MIT
 
 export interface IDesktop {
-  isDesktop: boolean;
+  isDesktop: boolean
 }
 
-export const isSmallScreen = (): boolean => document.body.clientWidth < 767;
+export const isSmallScreen = (): boolean => document.body.clientWidth < 767
 
-export const NO_MOTION_PREFERENCE_QUERY = '(prefers-reduced-motion: no-preference)';
+export const NO_MOTION_PREFERENCE_QUERY = '(prefers-reduced-motion: no-preference)'
 
 export const METADATA = {
   title: 'Portfolio | Ayush Singh',
   description:
     'I bridge the gap between design and development. I take responsibility to craft an aesthetic user experience using modern frontend architecture.',
   siteUrl: 'https://ayushsingh.net/',
-};
+}
 
 export const MENULINKS = [
   {
@@ -40,16 +40,16 @@ export const MENULINKS = [
     name: 'Contact',
     ref: 'contact',
   },
-];
+]
 
 export const TYPED_STRINGS = [
   'I design and develop things',
   'I develop modern frontend apps',
   'I design dynamic user experience',
   'I design and develop motion',
-];
+]
 
-export const EMAIL = 'ayush.singh.xda@gmail.com';
+export const EMAIL = 'ayush.singh.xda@gmail.com'
 
 export const SOCIAL_LINKS = {
   linkedin: 'https://www.linkedin.com/in/alphaayush/',
@@ -61,16 +61,16 @@ export const SOCIAL_LINKS = {
   behance: 'https://www.behance.net/alphaayush/',
   twitter: 'https://twitter.com/ayush013',
   topmate: 'https://www.topmate.io/alphaayush/',
-};
+} as Record<string, string>
 
 export interface IProject {
-  name: string;
-  image: string;
-  blurImage: string;
-  description: string;
-  gradient: [string, string];
-  url: string;
-  tech: string[];
+  name: string
+  image: string
+  blurImage: string
+  description: string
+  gradient: [string, string]
+  url: string
+  tech: string[]
 }
 
 export const PROJECTS: IProject[] = [
@@ -182,13 +182,13 @@ export const PROJECTS: IProject[] = [
     url: 'https://cardize.ayushsingh.net/',
     tech: ['javascript', 'html', 'css'],
   },
-];
+]
 
 export const SKILLS = {
   frontend: ['javascript', 'react', 'redux', 'next', 'angular', 'gsap', 'tailwind', 'sass', 'svg', 'html', 'css'],
   userInterface: ['figma', 'sketch', 'illustrator', 'photoshop'],
   other: ['git', 'webpack', 'gulp', 'lightroom', 'aftereffects'],
-};
+}
 
 export enum Branch {
   LEFT = 'leftSide',
@@ -443,23 +443,23 @@ export const TIMELINE: Array<TimelineNodeV2> = [
     shouldDrawLine: true,
     alignment: Branch.LEFT,
   },
-];
+]
 
-export type TimelineNodeV2 = CheckpointNode | BranchNode;
+export type TimelineNodeV2 = CheckpointNode | BranchNode
 
 export interface CheckpointNode {
-  type: NodeTypes.CHECKPOINT;
-  title: string;
-  subtitle?: string;
-  size: ItemSize;
-  image?: string;
-  slideImage?: string;
-  shouldDrawLine: boolean;
-  alignment: Branch;
+  type: NodeTypes.CHECKPOINT
+  title: string
+  subtitle?: string
+  size: ItemSize
+  image?: string
+  slideImage?: string
+  shouldDrawLine: boolean
+  alignment: Branch
 }
 
 export interface BranchNode {
-  type: NodeTypes.CONVERGE | NodeTypes.DIVERGE;
+  type: NodeTypes.CONVERGE | NodeTypes.DIVERGE
 }
 
-export const GTAG = 'UA-163844688-1';
+export const GTAG = 'UA-163844688-1'

@@ -1628,6 +1628,13 @@
   resolved "https://registry.npmjs.org/@types/unist/-/unist-2.0.10.tgz#04ffa7f406ab628f7f7e97ca23e290cd8ab15efc"
   integrity sha512-IfYcSBWE3hLpBg8+X2SEa8LVkJdJEkT2Ese2aaLs3ptGdVtABxndrMaxuFlQ1qdFf9Q5rDvDpxI3WwgvKFAsQA==
 
+"@types/vanilla-tilt@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.npmjs.org/@types/vanilla-tilt/-/vanilla-tilt-1.6.2.tgz#1b49b1c0027ed3a664fb3683427d9d4f05f316c3"
+  integrity sha512-KQRqLG1/5G768y3EYiwuiRqU+dpmxB8QuYdOqpd+4HM+E4RMGh2/xKfRUz7N38Al981ul0Km2vsb7CuxgLHBww==
+  dependencies:
+    vanilla-tilt "*"
+
 "@types/web-bluetooth@^0.0.14":
   version "0.0.14"
   resolved "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.14.tgz#94e175b53623384bff1f354cdb3197a8d63cdbe5"
@@ -8693,7 +8700,7 @@ validate-npm-package-name@^5.0.0:
   dependencies:
     builtins "^5.0.0"
 
-vanilla-tilt@^1.8.1:
+vanilla-tilt@*, vanilla-tilt@^1.8.1:
   version "1.8.1"
   resolved "https://registry.npmjs.org/vanilla-tilt/-/vanilla-tilt-1.8.1.tgz#09cb4dc89509a55a44bb221917bb8ecdc2e39113"
   integrity sha512-hPB1XUsnh+SIeVSW2beb5RnuFxz4ZNgxjGD78o52F49gS4xaoLeEMh9qrQnJrnEn/vjjBI7IlxrrXmz4tGV0Kw==

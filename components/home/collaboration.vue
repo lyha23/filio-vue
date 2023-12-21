@@ -1,6 +1,5 @@
 <script lang="ts" setup name="CollaborationSection">
 import { Linear, gsap } from 'gsap'
-import { useEffect, useState } from 'vue-hooks-api'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { NO_MOTION_PREFERENCE_QUERY, isSmallScreen } from '~/store/constants'
 
@@ -13,7 +12,7 @@ const COLLABORATION_STYLE = {
 const quoteRef: Ref<HTMLElement | undefined> = ref(undefined)
 const targetSection: Ref<HTMLElement | undefined> = ref(undefined)
 
-const [willChange, setwillChange] = useState(false)
+const willChange = ref(false)
 
 function initTextGradientAnimation(targetSection: Ref<HTMLElement | undefined>): ScrollTrigger {
   const timeline = gsap.timeline({ defaults: { ease: Linear.easeNone } })
@@ -28,7 +27,7 @@ function initTextGradientAnimation(targetSection: Ref<HTMLElement | undefined>):
     end: 'center center',
     scrub: 0,
     animation: timeline,
-    onToggle: self => setwillChange(self.isActive),
+    onToggle: self => willChange.value = self.isActive,
   })
 }
 
@@ -50,7 +49,7 @@ function initSlidingTextAnimation(targetSection: Ref<HTMLElement | undefined>) {
   })
 }
 
-useEffect(() => {
+onMounted(() => {
   const textBgAnimation = initTextGradientAnimation(targetSection)
   let slidingAnimation: ScrollTrigger | undefined
 
@@ -63,7 +62,7 @@ useEffect(() => {
     textBgAnimation.kill()
     slidingAnimation?.kill()
   }
-}, [quoteRef, targetSection])
+})
 </script>
 
 <template>

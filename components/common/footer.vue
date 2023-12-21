@@ -27,7 +27,7 @@ const otherProp = reactive({
             rel="noreferrer"
             target="_blank"
           >
-            <img :src="`/social/${el}.svg`" alt="{el}" width="{40}" height="{40}">
+            <img :src="`/social/${el}.svg`" alt="{el}" width="40" height="40">
           </a>
         </div>
         <div class="mt-8 flex">

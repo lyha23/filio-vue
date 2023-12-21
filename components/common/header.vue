@@ -3,7 +3,7 @@ import Menu from '~/components/common/menu.vue'
 
 const menuVisible = ref(false)
 
-function setmenuVisible(val) {
+function setmenuVisible(val: boolean) {
   menuVisible.value = val
 }
 </script>

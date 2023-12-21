@@ -1,13 +1,11 @@
 <script setup lang="ts" name="AboutSection">
 import { Linear, gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useEffect, useState } from 'vue-hooks-api'
 
 const quoteRef: Ref<HTMLElement | undefined> = ref(undefined)
 const targetSection: Ref<HTMLElement | undefined> = ref(undefined)
 
-// let willChange = ref(false)
-const [willChange, setwillChange] = useState(false)
+const willChange = ref(false)
 
 function initAboutAnimation(quoteRef: Ref<HTMLElement | undefined>, targetSection: Ref<HTMLElement | undefined>): ScrollTrigger {
   const timeline = gsap.timeline({
@@ -31,16 +29,15 @@ function initAboutAnimation(quoteRef: Ref<HTMLElement | undefined>, targetSectio
     end: 'center top',
     scrub: 0,
     animation: timeline,
-    onToggle: self => setwillChange(self.isActive),
+    onToggle: self => willChange.value = self.isActive,
   })
   return scrollTriggerInstance
 }
 
-useEffect(() => {
+onMounted(() => {
   const aboutScrollTriggerInstance = initAboutAnimation(quoteRef, targetSection)
-
   return aboutScrollTriggerInstance.kill
-}, [quoteRef, targetSection])
+})
 </script>
 
 <template>
