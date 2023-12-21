@@ -4,7 +4,7 @@
 
 [Live Demo](https://www.ayushsingh.co.in)
 
-The origin program is [here](https://github.com/ayush013/folio.git), which is powered by React. And I have got to praise the project's owner for his great work. What he had done presents a wonderful UI/UX. 
+The origin program is [here](https://github.com/ayush013/folio.git), which is powered by React. And I have got to praise the project's owner for his great work. What he had done presents a wonderful UI/UX.
 
 The simple blog-front project contains slideshow, text gradient, dynamic SVG, timeline, and so on.
 
@@ -14,29 +14,33 @@ All of there are almost the best practices.
 So I recode this program by Vue.js in order to use it in my other's program in the future.
 > 所以, 我用Vue.js重写了它, 以便于在更多的项目中使用它的轮子.
 
-This one is based on vue3 + vite + unocss + sass + viewport adapt + axios
+This one is based on nuxt3(vue3) + vite + unocss + sass + viewport adapt + axios
 
-> 基于 vue3 + vite + unocss + sass + viewport 适配方案 + axios 封装.
+> 基于 nuxt3(Vue3) + unocss + sass + viewport 适配方案 + axios 封装.
 
 if it helps you, you can star me.
-> 如果对你有帮助送我一颗珍贵的小星星（づ￣ 3 ￣）づ ╭❤ 
+> 如果对你有帮助送我一颗珍贵的小星星（づ￣ 3 ￣）づ ╭❤
 
 ## How to run on local?  如何运行?
 
-First, run the development server: 
+First, run the development server:
 >首先安装该安装的package
 ```bash
 npm install
 # or
 yarn
 ```
-Second, run the development server: 
+Second, run the development server:
 >第二步, 运行
 
 ```bash
 npm run dev
 # or
 yarn dev
+```
+```
+2023年12月21日更新
+转到nuxt开发,赋予了ssr的能力
 ```
 
 ## How to reconstruct?  如何重构?
